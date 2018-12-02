@@ -1,0 +1,24 @@
+<div class="container">
+    <fieldset>
+        <legend>Vehicles form</legend>
+        <form (ngSubmit)="onSubmit(vehicleForm)" #vehicleForm="ngForm">
+            <div class="form-group">
+                <label for="VehicleId">Vehicle ID</label>
+                <input type="text" class="form-control" id="VehicleId" [(ngModel)]="vehicle.VehicleId" name="VehicleId" placeholder="ID" ngModel>
+            </div>
+            <div class="form-group">
+                <label for="Type">Type</label>
+                <input type="text" class="form-control" id="Type" [(ngModel)]="vehicle.Type" name="Type" placeholder="Type" ngModel>
+            </div>
+            <div class="form-group">
+                <label for="ManufacturerNameShort">Manufacturer Short Name</label>
+                <input type="text" class="form-control" id="ManufacturerNameShort" [(ngModel)]="vehicle.ManufacturerNameShort" name="ManufacturerNameShort" placeholder="Manufacturer Short Name" ngModel>
+            </div>
+            <div class="form-group">
+                <label for="Price">Price</label>
+                <input type="text" class="form-control" id="Price" [(ngModel)]="vehicle.Price" name="Price" placeholder="Price" ngModel>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </fieldset>
+</div>
