@@ -22,3 +22,8 @@
         </form>
     </fieldset>
 </div>
+<div class="container" *ngIf="message">
+    <div class="alert alert-primary" role="alert">
+        {{message}}
+    </div>
+</div>

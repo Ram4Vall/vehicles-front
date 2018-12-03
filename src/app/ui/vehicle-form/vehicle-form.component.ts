@@ -14,6 +14,7 @@ import { VehicleValidationResultCode } from '../../classes/vehicle-validation-re
 export class VehicleFormComponent {
 
   public vehicle = new VehicleRequest();
+  public message = '';
 
   constructor(private _vehiclesService: VehiclesService) { }
 
@@ -23,13 +24,27 @@ export class VehicleFormComponent {
     this._vehiclesService.processVehicle(this.vehicle)
       .subscribe( (data: ProcessVehicleResponse) => {
 
-        // const pru: VehicleValidationResultCode = data.resultCode;
-
-        if (data.resultCode === VehicleValidationResultCode.Valid ) {
+        let result = '';
+        /*if (data.resultCode === VehicleValidationResultCode.Valid ) {
           console.log('Valid');
+          this.message = 'Valid';
         } else {
           console.log('Invalid');
+          this.message = 'Invalid';
+        }*/
+        switch (data.resultCode) {
+          case VehicleValidationResultCode.Valid:
+            result = 'Valid';
+          break;
+          case VehicleValidationResultCode.Invalid:
+            result = 'Invalid';
+          break;
+          case VehicleValidationResultCode.NotSpecified :
+          default :
+            result = 'Validation Error';
+          break;
         }
+        this.message =  result + ' form for vehicle id: ' + data.vehicleId;
       },
       error => {
         console.log(error);
