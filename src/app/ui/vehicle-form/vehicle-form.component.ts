@@ -19,19 +19,12 @@ export class VehicleFormComponent {
   constructor(private _vehiclesService: VehiclesService) { }
 
   onSubmit(model: NgForm) {
-    console.log(this.vehicle);
-
-    this._vehiclesService.processVehicle(this.vehicle)
+    this.message = '';
+    if (!model.invalid) {
+      this._vehiclesService.processVehicle(this.vehicle)
       .subscribe( (data: ProcessVehicleResponse) => {
 
         let result = '';
-        /*if (data.resultCode === VehicleValidationResultCode.Valid ) {
-          console.log('Valid');
-          this.message = 'Valid';
-        } else {
-          console.log('Invalid');
-          this.message = 'Invalid';
-        }*/
         switch (data.resultCode) {
           case VehicleValidationResultCode.Valid:
             result = 'Valid';
@@ -49,5 +42,6 @@ export class VehicleFormComponent {
       error => {
         console.log(error);
       });
+    }
   }
 }
